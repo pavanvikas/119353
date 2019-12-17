@@ -10,9 +10,9 @@ pipeline {
 
         RTF_REGISTRY = "http://myartifactory.com/artifactory"
 
-        DOCKER_REPO= "test-docker"
+        DOCKER_REPO= "docker-local"
 
-        DEBIAN_REPO = "test-deb"
+        DEBIAN_REPO = "debian-local"
 
     }
 
