@@ -8,7 +8,6 @@ pipeline {
 
     environment {
 
-        RTF_REGISTRY = "http://myartifactory.com/artifactory"
 
         DOCKER_REPO= "docker-local"
 
