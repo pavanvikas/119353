@@ -104,9 +104,9 @@ pipeline {
 
                     sh "docker pull golang:latest"
 
-                    sh "docker tag alpine:latest artifactory.jfrog.com/test-docker/alpine:latest"
+                    sh "docker tag alpine:latest docker.myartifactory.com/test-docker/alpine:latest"
 
-                    sh "docker tag golang:latest artifactory.jfrog.com/test-docker/golang:latest"
+                    sh "docker tag golang:latest docker.myartifactory.com/test-docker/golang:latest"
 
                 }
 
@@ -132,9 +132,9 @@ pipeline {
 
                     collectEnv(awsbuildInfo.getEnv())
 
-                    awsbuildInfo.append(rtDocker.push("artifactory.jfrog.com/test-docker/alpine:latest", "${DOCKER_REPO}"))
+                    awsbuildInfo.append(rtDocker.push("docker.myartifactory.com/test-docker/alpine:latest", "${DOCKER_REPO}"))
 
-                    awsbuildInfo.append(rtDocker.push("artifactory.jfrog.com/test-docker/golang:latest", "${DOCKER_REPO}"))
+                    awsbuildInfo.append(rtDocker.push("docker.myartifactory.com/test-docker/golang:latest", "${DOCKER_REPO}"))
 
                     server.publishBuildInfo awsbuildInfo
 
