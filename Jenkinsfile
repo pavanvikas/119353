@@ -8,7 +8,7 @@ pipeline {
         DOCKER_REPO= "docker-local"
 
         DEBIAN_REPO = "debian-local"
-        WORKSPACE ="/home/pavang/119353"
+        WORKSPACE ="/tmp/119353"
 
     }
 
