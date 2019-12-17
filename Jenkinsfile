@@ -80,7 +80,7 @@ pipeline {
 
                     rtPublishBuildInfo (
 
-                        serverId: "artifactory-jfrog",
+                        serverId: "Arti1",
 
                         buildName: "${JOB_NAME}",
 
