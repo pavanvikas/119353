@@ -46,13 +46,19 @@ stage ('Artifactory configuration') {
 
             steps {
                 script{
-                rtDockerPush(
-                   serverId: "Arti1",
-                  image: "docker.myartifactory.com/test-docker/alpine:latest",
-                  targetRepo: 'docker-local',
-                  buildName: "119353",
-                  buildNumber: "21",
-                )           
+                    def server = Artifactory.server "Arti1"
+
+                    def rtDocker = Artifactory.docker server: server
+                    rtDocker.push("docker.myartifactory.com/test-docker/alpine:latest", "${DOCKER_REPO}")
+                    rtDocker.push("docker.myartifactory.com/test-docker/golang:latest", "${DOCKER_REPO}")
+
+              //  rtDockerPush(
+              //     serverId: "Arti1",
+              //    image: "docker.myartifactory.com/test-docker/alpine:latest",
+              //    targetRepo: 'docker-local',
+              //    buildName: "119353",
+              //    buildNumber: "21",
+              //  )           
             }
             }
 
