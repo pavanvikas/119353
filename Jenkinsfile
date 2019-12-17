@@ -122,7 +122,7 @@ pipeline {
 
                     def awsbuildInfo = newBuildInfo()
 
-                    awsbuildInfo.setName("docker-${JOB_NAME}")
+                    awsbuildInfo.setName("${JOB_NAME}")
 
                     def server = Artifactory.server "Arti1"
 
