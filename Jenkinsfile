@@ -13,36 +13,26 @@ pipeline {
     }
 
     stages {
-
-      
-        stage("Pull docker images") {
-
+stage ('Artifactory configuration') {
             steps {
-
-                script {
-
-                    sh "docker pull alpine:latest"
-
-                    sh "docker pull golang:latest"
-
-                    sh "docker tag alpine:latest docker.myartifactory.com/test-docker/alpine:latest"
-
-                    sh "docker tag golang:latest docker.myartifactory.com/test-docker/golang:latest"
-
-                }
-
+                rtServer (
+                    id: "Arti1",
+                    url: "http://myartifactory.com/artifactory"
+                )    
             }
-
         }
+      
 
         stage("Push docker images") {
 
             steps {
 
                 rtDockerPush(
-                  serverId: 'Arti1',
+                   serverId: 'Arti1',
                   image: "docker.myartifactory.com/test-docker/alpine:latest",
-                  targetRepo: 'docker-local/'
+                  targetRepo: 'docker-local',
+                  buildName: "${JOB_NAME}",
+                  buildNumber: "${BUILD_NUMBER}",
                 )           
             }
 
@@ -51,8 +41,8 @@ pipeline {
 stage ('Publish build info') {
     steps {
                 rtPublishBuildInfo (
-                    buildName: "${JOB_NAME}",
-                    buildNumber: "${BUILD_NUMBER}",
+                   // buildName: "${JOB_NAME}",
+                   // buildNumber: "${BUILD_NUMBER}",
                     //buildName: 'MK',
                     //buildNumber: '48',
                     serverId: "Arti1"
