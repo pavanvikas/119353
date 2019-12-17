@@ -21,7 +21,26 @@ stage ('Artifactory configuration') {
                 )    
             }
         }
-      
+      stage("Pull docker images") {
+
+            steps {
+
+                script {
+
+                    sh "docker pull alpine:latest"
+
+                    sh "docker pull golang:latest"
+
+                    sh "docker tag alpine:latest docker.myartifactory.com/test-docker/alpine:latest"
+
+                    sh "docker tag golang:latest docker.myartifactory.com/test-docker/golang:latest"
+
+                }
+
+            }
+
+        }
+
 
         stage("Push docker images") {
 
@@ -31,8 +50,8 @@ stage ('Artifactory configuration') {
                    serverId: "Arti1",
                   image: "docker.myartifactory.com/test-docker/alpine:latest",
                   targetRepo: 'docker-local',
-                  //buildName: "119353",
-                  //buildNumber: "21",
+                  buildName: "119353",
+                  buildNumber: "21",
                 )           
             }
 
