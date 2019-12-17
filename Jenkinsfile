@@ -66,9 +66,14 @@ stage ('Artifactory configuration') {
 
 stage ('Publish build info') {
     steps {
-                rtPublishBuildInfo (
-                    serverId: "Arti1"
-                )
+                            def server = Artifactory.server "Arti1"
+
+              //  rtPublishBuildInfo (
+              //      serverId: "Arti1"
+              //  )
+        
+                server.publishBuildInfo buildInfo
+
             }
         }
     }
