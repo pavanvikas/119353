@@ -31,8 +31,8 @@ stage ('Artifactory configuration') {
                    serverId: "Arti1",
                   image: "docker.myartifactory.com/test-docker/alpine:latest",
                   targetRepo: 'docker-local',
-                  buildName: "119353",
-                  buildNumber: "21",
+                  //buildName: "119353",
+                  //buildNumber: "21",
                 )           
             }
 
