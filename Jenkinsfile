@@ -51,8 +51,10 @@ pipeline {
 stage ('Publish build info') {
     steps {
                 rtPublishBuildInfo (
-                    buildName: 'MK',
-                    buildNumber: '48',
+                    buildName: "${JOB_NAME}",
+                    buildNumber: "${BUILD_NUMBER}",
+                    //buildName: 'MK',
+                    //buildNumber: '48',
                     serverId: "Arti1"
                 )
             }
