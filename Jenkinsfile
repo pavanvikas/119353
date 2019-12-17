@@ -49,11 +49,13 @@ pipeline {
         }
 
 stage ('Publish build info') {
-          steps {
-            rtPublishBuildInfo (
-                serverId: "Arti1"
-            )
-          }
+    steps {
+                rtPublishBuildInfo (
+                    buildName: 'MK',
+                    buildNumber: '48',
+                    serverId: "Arti1"
+                )
+            }
         }
     }
 
