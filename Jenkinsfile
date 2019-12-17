@@ -28,7 +28,7 @@ stage ('Artifactory configuration') {
             steps {
 
                 rtDockerPush(
-                   serverId: 'Arti1',
+                   serverId: "Arti1",
                   image: "docker.myartifactory.com/test-docker/alpine:latest",
                   targetRepo: 'docker-local',
                   buildName: "${JOB_NAME}",
@@ -41,14 +41,9 @@ stage ('Artifactory configuration') {
 stage ('Publish build info') {
     steps {
                 rtPublishBuildInfo (
-                   // buildName: "${JOB_NAME}",
-                   // buildNumber: "${BUILD_NUMBER}",
-                    //buildName: 'MK',
-                    //buildNumber: '48',
                     serverId: "Arti1"
                 )
             }
         }
     }
-
 }
