@@ -120,24 +120,26 @@ pipeline {
 
                 script {
 
-                    def awsbuildInfo = newBuildInfo()
+                   // def awsbuildInfo = newBuildInfo()
 
-                    awsbuildInfo.setName("${JOB_NAME}")
+                 //   awsbuildInfo.setName("${JOB_NAME}")
 
                     def server = Artifactory.server "Arti1"
 
                     def rtDocker = Artifactory.docker server: server
 
-                    awsbuildInfo.retention(["maxBuilds": 2,  "deleteBuildArtifacts" : true])
+                    // awsbuildInfo.retention(["maxBuilds": 2,  "deleteBuildArtifacts" : true])
 
-                    collectEnv(awsbuildInfo.getEnv())
+                    //collectEnv(awsbuildInfo.getEnv())
 
-                    awsbuildInfo.append(rtDocker.push("docker.myartifactory.com/test-docker/alpine:latest", "${DOCKER_REPO}"))
+                    //awsbuildInfo.append(rtDocker.push("docker.myartifactory.com/test-docker/alpine:latest", "${DOCKER_REPO}"))
 
-                    awsbuildInfo.append(rtDocker.push("docker.myartifactory.com/test-docker/golang:latest", "${DOCKER_REPO}"))
+                    //awsbuildInfo.append(rtDocker.push("docker.myartifactory.com/test-docker/golang:latest", "${DOCKER_REPO}"))
 
-                    server.publishBuildInfo awsbuildInfo
-
+//                    server.publishBuildInfo awsbuildInfo
+                     rtDocker.push("docker.myartifactory.com/test-docker/alpine:latest", "${DOCKER_REPO}")
+                    rtDocker.push("docker.myartifactory.com/test-docker/golang:latest", "${DOCKER_REPO}")
+                    rtPublishBuildInfo (  serverId: "Arti1")
                 }
 
             }
