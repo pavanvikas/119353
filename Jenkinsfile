@@ -135,8 +135,8 @@ pipeline {
                     collectEnv(awsbuildInfo.getEnv())
                   // def buildInfo =  awsbuildInfo.append(rtDocker.push("artifactory.jfrog.com/test-docker/alpine:latest", "${DOCKER_REPO}"))
                  // def buildInfo1 =   awsbuildInfo.append(rtDocker.push("artifactory.jfrog.com/test-docker/golang:latest", "${DOCKER_REPO}"))                 
-                  def buildInfo =  rtDocker.push("artifactory.jfrog.com/test-docker/alpine:latest", "${DOCKER_REPO}")
-                def buildInfo1 =  rtDocker.push("artifactory.jfrog.com/test-docker/golang:latest", "${DOCKER_REPO}")
+                  def buildInfo =  rtDocker.push("docker.myartifactory.com/test-docker/alpine:latest", "${DOCKER_REPO}")
+                def buildInfo1 =  rtDocker.push("docker.myartifactory.com/test-docker/golang:latest", "${DOCKER_REPO}")
 
                     
                     server.publishBuildInfo buildInfo
