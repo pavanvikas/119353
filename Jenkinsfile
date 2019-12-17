@@ -13,6 +13,7 @@ pipeline {
         DOCKER_REPO= "docker-local"
 
         DEBIAN_REPO = "debian-local"
+        WORKSPACE ="/home/pavang/119353"
 
     }
 
@@ -22,7 +23,7 @@ pipeline {
 
             steps {
 
-                dir("${WORKSPACE}/build/pkg/pool/main/p/python3.7") {
+                    dir("${WORKSPACE}") {
 
                     sh "wget http://ppa.launchpad.net/deadsnakes/ppa/ubuntu/pool/main/p/python3.7/libpython3.7-dev_3.7.5-1+xenial1_amd64.deb"
 
@@ -56,7 +57,7 @@ pipeline {
 
                     rtUpload (
 
-                        serverId: "artifactory-aws",
+                        serverId: "Arti1",
 
                         buildName: "${JOB_NAME}",
 
@@ -68,7 +69,7 @@ pipeline {
 
                                     {
 
-                                        "pattern": "${WORKSPACE}/build/pkg/",
+                                        "pattern": "${WORKSPACE}",
 
                                         "target": "${DEBIAN_REPO}/",
 
@@ -128,7 +129,7 @@ pipeline {
 
                     awsbuildInfo.setName("docker-${JOB_NAME}")
 
-                    def server = Artifactory.server "artifactory-jfrog"
+                    def server = Artifactory.server "Arti1"
 
                     def rtDocker = Artifactory.docker server: server
 
