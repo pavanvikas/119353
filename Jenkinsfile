@@ -45,7 +45,7 @@ stage ('Artifactory configuration') {
         stage("Push docker images") {
 
             steps {
-
+                script{
                 rtDockerPush(
                    serverId: "Arti1",
                   image: "docker.myartifactory.com/test-docker/alpine:latest",
@@ -53,6 +53,7 @@ stage ('Artifactory configuration') {
                   buildName: "119353",
                   buildNumber: "21",
                 )           
+            }
             }
 
         }
