@@ -134,8 +134,9 @@ pipeline {
                     awsbuildInfo.retention(["maxBuilds": 2,  "deleteBuildArtifacts" : true])
                     collectEnv(awsbuildInfo.getEnv())
                    def buildInfo =  awsbuildInfo.append(rtDocker.push("artifactory.jfrog.com/test-docker/alpine:latest", "${DOCKER_REPO}"))
-                  def buildInfo =   awsbuildInfo.append(rtDocker.push("artifactory.jfrog.com/test-docker/golang:latest", "${DOCKER_REPO}"))                 
+                  def buildInfo1 =   awsbuildInfo.append(rtDocker.push("artifactory.jfrog.com/test-docker/golang:latest", "${DOCKER_REPO}"))                 
                  server.publishBuildInfo buildInfo
+                 server.publishBuildInfo buildInfo1
 
               //  rtDockerPush(
               //     serverId: "Arti1",
